@@ -8,8 +8,8 @@ data = []
 data = JSON.parse(IO.read(file)) unless file.nil?
 
 def list(data)
-  data.each do |elem|
-    puts elem[:name]
+  data.each_with_index do |elem, index|
+    puts "#{index}. #{elem[:name]}"
   end
 end
 
