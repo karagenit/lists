@@ -14,7 +14,7 @@ def list(data)
 end
 
 def list_new(data)
-  puts "Enter name:"
+  print "Name: "
   name = gets.chomp
   data.push({ name: name })
 end
@@ -32,7 +32,7 @@ def list_delete_tag(data, number)
 end
 
 def list_exit(data)
-  puts "Enter output filename, or blank to overwrite"
+  print "Output name (blank to overwrite): "
   name = gets.chomp
   name = file if name.empty? # this breaks
   IO.write(name, data.to_json)
@@ -42,6 +42,7 @@ end
 puts "Ready"
 
 while true
+  print "> "
   case gets.chomp
   when "list"
     list(data)
