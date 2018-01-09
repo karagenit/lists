@@ -8,9 +8,15 @@ data = []
 data = JSON.parse(IO.read(file)) unless file.nil?
 
 def list(data)
+  data.each do |elem|
+    puts elem[:name]
+  end
 end
 
 def list_new(data)
+  puts "Enter name:"
+  name = gets.chomp
+  data.push({ name: name })
 end
 
 def list_edit(data)
@@ -28,7 +34,7 @@ end
 def list_exit(data)
   puts "Enter output filename, or blank to overwrite"
   name = gets.chomp
-  name = file if name.empty?
+  name = file if name.empty? # this breaks
   IO.write(name, data.to_json)
   exit
 end
