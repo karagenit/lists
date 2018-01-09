@@ -4,32 +4,32 @@ require 'json'
 
 file = ARGV[0]
 
-data = 
-if file.nil?
-  []
-else
-  JSON.parse(IO.read(file))
+data = []
+data = JSON.parse(IO.read(file)) unless file.nil?
+
+def list(data)
 end
 
-def list
+def list_new(data)
 end
 
-def list_new
+def list_edit(data)
 end
 
-def list_edit
+def list_edit_name(data, number)
 end
 
-def list_edit_name(number)
+def list_add_tag(data, number)
 end
 
-def list_add_tag(number)
+def list_delete_tag(data, number)
 end
 
-def list_delete_tag(number)
-end
-
-def list_exit
+def list_exit(data)
+  puts "Enter output filename, or blank to overwrite"
+  name = gets.chomp
+  name = file if name.empty?
+  IO.write(name, data.to_json)
   exit
 end
 
@@ -38,13 +38,13 @@ puts "Ready"
 while true
   case gets.chomp
   when "list"
-    list
+    list(data)
   when "new"
-    list_new
+    list_new(data)
   when "edit"
-    list_edit
+    list_edit(data)
   when "exit"
-    list_exit
+    list_exit(data)
   else
     #print help
   end
