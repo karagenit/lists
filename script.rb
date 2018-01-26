@@ -3,24 +3,18 @@
 require 'json'
 
 class List
-  attr_reader :data
-
   def initialize(filename = nil)
-    @data = JSON.parse(IO.read(filename)) unless filename.nil?
-    @data ||= { tags: [], items: [] }
+    @items = JSON.parse(IO.read(filename)) unless filename.nil?
+    @items ||= []
   end
 
   # Should be able to push/pop/delete/etc
   def items(tag = nil)
     if tag.nil?
-      @data[:items]
+      @items
     else
-      @data[:items].each { |item| item if item.tags.include? tag }
+      @items.each { |item| item if item.tags.include? tag }
     end
-  end
-
-  def tags
-    @data[:tags]
   end
 end
 
