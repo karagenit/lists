@@ -13,36 +13,34 @@ class List
     if tag.nil?
       @items
     else
-      @items.each { |item| item if item.tags.include? tag }
+      @items.each { |item| item if item['tags'].include? tag }
     end
   end
 end
 
-class Item
-  attr_reader :name
-  attr_reader :tags
-
-  def initialize(name, *tags)
-    @name = name
-    @tags = tags
-  end
-end
-
 list = List.new(ARGV[0])
+ARGV.clear # so we can gets properly later on
+quit = false
 
 puts "Ready"
 
-while true
+until quit
   print "> "
   case gets.chomp
   when "list"
-    list.items.each_with_index { |item, index| puts "#{index}. #{item.name}" }
+    list.items.each_with_index { |item, index| puts "#{index}. #{item['name']}" }
   when "new"
     print "Name: "
-    list.items.push Item.new(gets.chomp)
+    list.items.push({ 'name' => gets.chomp, 'tags' => [] })
   when "edit"
   when "exit"
+    quit = true
   else
     #print help
   end
 end
+
+print "File to save to: "
+outfile = gets.chomp
+IO.write(outfile, list.items.to_json) unless outfile.empty?
+print "Done!"
