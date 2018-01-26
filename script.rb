@@ -7,7 +7,7 @@ class List
 
   def initialize(filename = nil)
     @data = JSON.parse(IO.read(filename)) unless filename.nil?
-    @data |= { tags: [], items: [] }
+    @data ||= { tags: [], items: [] }
   end
 
   # Should be able to push/pop/delete/etc
@@ -25,9 +25,11 @@ class List
 end
 
 class Item
+  attr_reader :name
   attr_reader :tags
 
-  def initialize(*tags)
+  def initialize(name, *tags)
+    @name = name
     @tags = tags
   end
 end
@@ -40,7 +42,10 @@ while true
   print "> "
   case gets.chomp
   when "list"
+    list.items.each_with_index { |item, index| puts "#{index}. #{item.name}" }
   when "new"
+    print "Name: "
+    list.items.push Item.new(gets.chomp)
   when "edit"
   when "exit"
   else
