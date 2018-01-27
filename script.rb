@@ -13,7 +13,7 @@ class List
     if tag.nil?
       @items
     else
-      @items.each { |item| item if item['tags'].include? tag }
+      @items.select { |item| item['tags'].include? tag }
     end
   end
 end
@@ -29,6 +29,10 @@ until quit
   case gets.chomp
   when "list"
     list.items.each_with_index { |item, index| puts "#{index}. #{item['name']}" }
+  when "search"
+    print "Tag: "
+    tag = gets.chomp
+    list.items(tag).each_with_index { |item, index| puts "#{index}. #{item['name']}" }
   when "new"
     print "Name: "
     name = gets.chomp
