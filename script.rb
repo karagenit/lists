@@ -43,4 +43,4 @@ end
 print "File to save to: "
 outfile = gets.chomp
 IO.write(outfile, list.items.to_json) unless outfile.empty?
-print "Done!"
+puts "Done!"
