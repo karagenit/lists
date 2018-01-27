@@ -33,6 +33,10 @@ until quit
     print "Name: "
     list.items.push({ 'name' => gets.chomp, 'tags' => [] })
   when "edit"
+    print "Element #: "
+    index = gets.chomp.to_i
+    print "Old Name: #{list.items[index]['name']}\nNew Name: "
+    list.items[index]['name'] = gets.chomp
   when "exit"
     quit = true
   else
