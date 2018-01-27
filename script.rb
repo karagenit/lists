@@ -31,7 +31,10 @@ until quit
     list.items.each_with_index { |item, index| puts "#{index}. #{item['name']}" }
   when "new"
     print "Name: "
-    list.items.push({ 'name' => gets.chomp, 'tags' => [] })
+    name = gets.chomp
+    print "Tags: "
+    tags = gets.chomp.split(',').map { |tag| tag.strip }
+    list.items.push({ 'name' => name, 'tags' => tags })
   when "edit"
     print "Element #: "
     index = gets.chomp.to_i
