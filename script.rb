@@ -37,6 +37,11 @@ until quit
     index = gets.chomp.to_i
     print "Old Name: #{list.items[index]['name']}\nNew Name: "
     list.items[index]['name'] = gets.chomp
+  when "delete"
+    print "Element #: "
+    index = gets.chomp.to_i
+    print "Name: #{list.items[index]['name']}\nConfirm (y/n)? "
+    list.items.delete_at(index) if gets.chomp == 'y'
   when "exit"
     quit = true
   else
