@@ -1,3 +1,4 @@
 *.json
 *.gem
 Gemfile.lock
+doc/
