@@ -2,8 +2,8 @@ Gem::Specification.new do |s|
     s.name          = 'todo-json'
     s.version       = IO.read('version.txt')
     s.license       = 'MIT'
-    s.summary       = 'TODO List App'
-    s.description   = 'TODO List App which Saves Data in JSON Format'
+    s.summary       = 'To-Do List App'
+    s.description   = 'To-Do List App which Saves Data in JSON Format'
     s.homepage      = 'https://github.com/karagenit/lists'
     s.author        = 'Caleb Smith'
     s.email         = 'karagenit@outlook.com'
